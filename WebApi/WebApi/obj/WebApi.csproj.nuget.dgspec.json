@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Development\\FullstackingWithGabriel\\ManagedIdentity-Storage\\WebApi\\WebApi\\WebApi.csproj": {}
+    "C:\\Development\\FullstackingWithGabriel\\Azure-Managed-Identity-Blob-Storage\\WebApi\\WebApi\\WebApi.csproj": {}
   },
   "projects": {
-    "C:\\Development\\FullstackingWithGabriel\\ManagedIdentity-Storage\\WebApi\\WebApi\\WebApi.csproj": {
+    "C:\\Development\\FullstackingWithGabriel\\Azure-Managed-Identity-Blob-Storage\\WebApi\\WebApi\\WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Development\\FullstackingWithGabriel\\ManagedIdentity-Storage\\WebApi\\WebApi\\WebApi.csproj",
+        "projectUniqueName": "C:\\Development\\FullstackingWithGabriel\\Azure-Managed-Identity-Blob-Storage\\WebApi\\WebApi\\WebApi.csproj",
         "projectName": "WebApi",
-        "projectPath": "C:\\Development\\FullstackingWithGabriel\\ManagedIdentity-Storage\\WebApi\\WebApi\\WebApi.csproj",
+        "projectPath": "C:\\Development\\FullstackingWithGabriel\\Azure-Managed-Identity-Blob-Storage\\WebApi\\WebApi\\WebApi.csproj",
         "packagesPath": "C:\\Users\\GabrielleRoux\\.nuget\\packages\\",
-        "outputPath": "C:\\Development\\FullstackingWithGabriel\\ManagedIdentity-Storage\\WebApi\\WebApi\\obj\\",
+        "outputPath": "C:\\Development\\FullstackingWithGabriel\\Azure-Managed-Identity-Blob-Storage\\WebApi\\WebApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -50,6 +50,10 @@
             "Azure.Storage.Blobs": {
               "target": "Package",
               "version": "[12.8.4, )"
+            },
+            "Azure.Storage.Files.DataLake": {
+              "target": "Package",
+              "version": "[12.6.2, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

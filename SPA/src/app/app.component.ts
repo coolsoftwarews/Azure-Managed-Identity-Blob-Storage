@@ -30,13 +30,28 @@ export class AppComponent {
     });
 
     return this._httpClient.post(`${environment.apiUrl}/api/documents`, formData).subscribe(x=>{
-      alert('Done');
+      alert('Upload Complete!');
     },
       (err)=>{ 
         alert(err);
         console.log(err);
-
       });
 
+  }
+
+  onDelete()
+  {
+    let resourceId = "";
+    return this._httpClient.delete(`${environment.apiUrl}/api/documents/${resourceId}`).subscribe(x=>{
+
+    });
+  }
+
+  onDownload()
+  {
+    let resourceId = "";
+    return this._httpClient.get(`${environment.apiUrl}/api/documents/${resourceId}`, {responseType: 'blob'}).subscribe(x=>{
+
+    });
   }
 }

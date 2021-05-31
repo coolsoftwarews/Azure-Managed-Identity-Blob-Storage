@@ -65,6 +65,20 @@
           "lib/netstandard2.0/Azure.Storage.Common.dll": {}
         }
       },
+      "Azure.Storage.Files.DataLake/12.6.2": {
+        "type": "package",
+        "dependencies": {
+          "Azure.Storage.Blobs": "12.8.4",
+          "Azure.Storage.Common": "12.7.3",
+          "System.Text.Json": "4.6.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Azure.Storage.Files.DataLake.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Azure.Storage.Files.DataLake.dll": {}
+        }
+      },
       "Microsoft.Bcl.AsyncInterfaces/1.0.0": {
         "type": "package",
         "compile": {
@@ -331,6 +345,22 @@
         "azure.storage.common.nuspec",
         "lib/netstandard2.0/Azure.Storage.Common.dll",
         "lib/netstandard2.0/Azure.Storage.Common.xml",
+        "pkgicon.png"
+      ]
+    },
+    "Azure.Storage.Files.DataLake/12.6.2": {
+      "sha512": "jNTSzPPR2y4Diz7StEueRyTcF+IyOpn3GCOiOWurUkD0XYo4L78xiRAg1OoLQ7Kfu7HBPkb4TAu5ViZB5I8vVw==",
+      "type": "package",
+      "path": "azure.storage.files.datalake/12.6.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "CHANGELOG.md",
+        "README.md",
+        "azure.storage.files.datalake.12.6.2.nupkg.sha512",
+        "azure.storage.files.datalake.nuspec",
+        "lib/netstandard2.0/Azure.Storage.Files.DataLake.dll",
+        "lib/netstandard2.0/Azure.Storage.Files.DataLake.xml",
         "pkgicon.png"
       ]
     },
@@ -784,6 +814,7 @@
     "net5.0": [
       "Azure.Identity >= 1.4.0",
       "Azure.Storage.Blobs >= 12.8.4",
+      "Azure.Storage.Files.DataLake >= 12.6.2",
       "Swashbuckle.AspNetCore >= 5.6.3"
     ]
   },
@@ -794,11 +825,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Development\\FullstackingWithGabriel\\ManagedIdentity-Storage\\WebApi\\WebApi\\WebApi.csproj",
+      "projectUniqueName": "C:\\Development\\FullstackingWithGabriel\\Azure-Managed-Identity-Blob-Storage\\WebApi\\WebApi\\WebApi.csproj",
       "projectName": "WebApi",
-      "projectPath": "C:\\Development\\FullstackingWithGabriel\\ManagedIdentity-Storage\\WebApi\\WebApi\\WebApi.csproj",
+      "projectPath": "C:\\Development\\FullstackingWithGabriel\\Azure-Managed-Identity-Blob-Storage\\WebApi\\WebApi\\WebApi.csproj",
       "packagesPath": "C:\\Users\\GabrielleRoux\\.nuget\\packages\\",
-      "outputPath": "C:\\Development\\FullstackingWithGabriel\\ManagedIdentity-Storage\\WebApi\\WebApi\\obj\\",
+      "outputPath": "C:\\Development\\FullstackingWithGabriel\\Azure-Managed-Identity-Blob-Storage\\WebApi\\WebApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -837,6 +868,10 @@
           "Azure.Storage.Blobs": {
             "target": "Package",
             "version": "[12.8.4, )"
+          },
+          "Azure.Storage.Files.DataLake": {
+            "target": "Package",
+            "version": "[12.6.2, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

@@ -25,11 +25,18 @@ namespace WebApi.Models
         /// <summary>
         /// generated storage account end point
         /// </summary>
-        public string ContainerEndPoint
+        public string BlobContainerEndPoint
         {
             get
             {
                 return $"https://{StorageAccount}.blob.core.windows.net/{BlobContainer}";
+            }
+        }
+        public string DataLakesEndPoint
+        {
+            get
+            {
+                return $"https://{StorageAccount}.dfs.core.windows.net";
             }
         }
     }

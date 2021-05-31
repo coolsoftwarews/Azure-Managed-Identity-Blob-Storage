@@ -1,13 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "FVrsAfLwjrME26yi2Rh3opu4KrZvQldt0JmHJU/O5d5NMB6zZ+2GG+5B3F35e54Oip0OLmWd30gnHAWhprexDA==",
+  "dgSpecHash": "WazBK1zesVKDFLPt80LB9w75vkiD7ebSQw+koholeDp4DlMXHNusQ9iQjZLr2DI2qfE6p5phQ6C003fXQOt/gw==",
   "success": true,
-  "projectFilePath": "C:\\Development\\FullstackingWithGabriel\\ManagedIdentity-Storage\\WebApi\\WebApi\\WebApi.csproj",
+  "projectFilePath": "C:\\Development\\FullstackingWithGabriel\\Azure-Managed-Identity-Blob-Storage\\WebApi\\WebApi\\WebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\GabrielleRoux\\.nuget\\packages\\azure.core\\1.14.0\\azure.core.1.14.0.nupkg.sha512",
     "C:\\Users\\GabrielleRoux\\.nuget\\packages\\azure.identity\\1.4.0\\azure.identity.1.4.0.nupkg.sha512",
     "C:\\Users\\GabrielleRoux\\.nuget\\packages\\azure.storage.blobs\\12.8.4\\azure.storage.blobs.12.8.4.nupkg.sha512",
     "C:\\Users\\GabrielleRoux\\.nuget\\packages\\azure.storage.common\\12.7.3\\azure.storage.common.12.7.3.nupkg.sha512",
+    "C:\\Users\\GabrielleRoux\\.nuget\\packages\\azure.storage.files.datalake\\12.6.2\\azure.storage.files.datalake.12.6.2.nupkg.sha512",
     "C:\\Users\\GabrielleRoux\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.0.0\\microsoft.bcl.asyncinterfaces.1.0.0.nupkg.sha512",
     "C:\\Users\\GabrielleRoux\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\GabrielleRoux\\.nuget\\packages\\microsoft.identity.client\\4.30.1\\microsoft.identity.client.4.30.1.nupkg.sha512",
