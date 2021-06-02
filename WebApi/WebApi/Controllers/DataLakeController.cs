@@ -24,6 +24,20 @@ namespace WebApi.Controllers
             this._blobStorageSettings = blobStorageSettings;
         }
 
+        [HttpGet(Name = "GetAllByPath")]
+        public async Task<IActionResult> GetAll()
+        {
+            try
+            {
+                var files = await Files();
+                return Ok(files);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
 
         [HttpPost(Name = "Upload")]
         public async Task<IActionResult> Upload()
@@ -61,7 +75,7 @@ namespace WebApi.Controllers
             }
         }
 
-        [HttpGet(Name = "Download")]
+        [HttpGet("{resourceId}", Name = "/Download")]
         public async Task<IActionResult> Download(string resourceId)
         {
             try
@@ -74,6 +88,34 @@ namespace WebApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        private async Task<List<string>> Files(int? pageSize = 5)
+        {
+            var files = new List<string>();
+
+            var client = new DefaultAzureCredential();
+
+            var dataLakeServiceClient =
+                                          new DataLakeServiceClient
+                                          (new Uri(_blobStorageSettings.DataLakesEndPoint), client);
+
+
+            var fileSystemClient = dataLakeServiceClient.GetFileSystemClient(_blobStorageSettings.BlobContainer);
+            var directoryClient = fileSystemClient.GetDirectoryClient($"{_blobStorageSettings.SubFolderPath}");
+            var paths = directoryClient.GetPaths();
+
+            foreach (var path in paths)
+            {
+                files.Add(path.Name);
+                if (files.Count > pageSize)
+                {
+                    break;
+                }
+            }
+
+            return files;
+        }
+
 
         /// <summary>
         /// Upload file using System Assigned Managed Identity e.g. App Service
@@ -93,7 +135,7 @@ namespace WebApi.Controllers
 
 
             var fileSystemClient = dataLakeServiceClient.GetFileSystemClient(_blobStorageSettings.BlobContainer);
-            var directoryClient = fileSystemClient.GetDirectoryClient("SubFolder");
+            var directoryClient = fileSystemClient.GetDirectoryClient($"{ _blobStorageSettings.SubFolderPath }");
             var fileClient = directoryClient.GetFileClient(resourceId);
             
             await fileClient.UploadAsync(file.OpenReadStream());
@@ -103,7 +145,6 @@ namespace WebApi.Controllers
        
         private async Task DeleteFile(string resourceId)
         {
-
             var client = new DefaultAzureCredential();
 
             var dataLakeServiceClient =
@@ -112,7 +153,7 @@ namespace WebApi.Controllers
 
 
             var fileSystemClient = dataLakeServiceClient.GetFileSystemClient(_blobStorageSettings.BlobContainer);
-            var directoryClient = fileSystemClient.GetDirectoryClient("DataLake");
+            var directoryClient = fileSystemClient.GetDirectoryClient($"{_blobStorageSettings.SubFolderPath}");
             var fileClient = directoryClient.GetFileClient(resourceId);
 
             await fileClient.DeleteIfExistsAsync();
@@ -128,7 +169,7 @@ namespace WebApi.Controllers
 
 
             var fileSystemClient = dataLakeServiceClient.GetFileSystemClient(_blobStorageSettings.BlobContainer);
-            var directoryClient = fileSystemClient.GetDirectoryClient("DataLake");
+            var directoryClient = fileSystemClient.GetDirectoryClient($"{_blobStorageSettings.SubFolderPath}");
             var fileClient = directoryClient.GetFileClient(resourceId);
                
             var provider = new FileExtensionContentTypeProvider();

@@ -18,9 +18,14 @@ namespace WebApi.Models
         public string StorageAccount { get; set; }
 
         /// <summary>
-        /// Name of Container or path to container subfolders
+        /// Name of Container
         /// </summary>
         public string BlobContainer { get; set; }
+
+        /// <summary>
+        /// Name and folder path
+        /// </summary>
+        public string SubFolderPath { get; set; }
 
         /// <summary>
         /// generated storage account end point

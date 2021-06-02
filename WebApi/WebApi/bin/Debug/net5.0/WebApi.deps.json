@@ -9,15 +9,7 @@
       "DEBUG",
       "NET",
       "NET5_0",
-      "NETCOREAPP",
-      "NET5_0_OR_GREATER",
-      "NETCOREAPP1_0_OR_GREATER",
-      "NETCOREAPP1_1_OR_GREATER",
-      "NETCOREAPP2_0_OR_GREATER",
-      "NETCOREAPP2_1_OR_GREATER",
-      "NETCOREAPP2_2_OR_GREATER",
-      "NETCOREAPP3_0_OR_GREATER",
-      "NETCOREAPP3_1_OR_GREATER"
+      "NETCOREAPP"
     ],
     "languageVersion": "9.0",
     "platform": "",
@@ -35,6 +27,7 @@
         "dependencies": {
           "Azure.Identity": "1.4.0",
           "Azure.Storage.Blobs": "12.8.4",
+          "Azure.Storage.Files.DataLake": "12.6.2",
           "Swashbuckle.AspNetCore": "5.6.3",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "5.0.0.0",
@@ -396,6 +389,22 @@
         },
         "compile": {
           "lib/netstandard2.0/Azure.Storage.Common.dll": {}
+        }
+      },
+      "Azure.Storage.Files.DataLake/12.6.2": {
+        "dependencies": {
+          "Azure.Storage.Blobs": "12.8.4",
+          "Azure.Storage.Common": "12.7.3",
+          "System.Text.Json": "4.6.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Azure.Storage.Files.DataLake.dll": {
+            "assemblyVersion": "12.6.2.0",
+            "fileVersion": "12.600.221.27002"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Azure.Storage.Files.DataLake.dll": {}
         }
       },
       "Microsoft.Bcl.AsyncInterfaces/1.0.0": {
@@ -2268,6 +2277,13 @@
       "sha512": "sha512-anWOlltpSZ1WtezGCh0yxVuXG6wEIi2Ql9/AWJw74bfKGPrntlPoaisHdoQstm66aVzPAM8/vat7Hh0BXYQAVA==",
       "path": "azure.storage.common/12.7.3",
       "hashPath": "azure.storage.common.12.7.3.nupkg.sha512"
+    },
+    "Azure.Storage.Files.DataLake/12.6.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jNTSzPPR2y4Diz7StEueRyTcF+IyOpn3GCOiOWurUkD0XYo4L78xiRAg1OoLQ7Kfu7HBPkb4TAu5ViZB5I8vVw==",
+      "path": "azure.storage.files.datalake/12.6.2",
+      "hashPath": "azure.storage.files.datalake.12.6.2.nupkg.sha512"
     },
     "Microsoft.Bcl.AsyncInterfaces/1.0.0": {
       "type": "package",

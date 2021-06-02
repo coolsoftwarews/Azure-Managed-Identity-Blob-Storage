@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Development\\FullstackingWithGabriel\\Azure-Managed-Identity-Blob-Storage\\WebApi\\WebApi\\WebApi.csproj": {}
+    "C:\\CSWS-Git\\Azure-Managed-Identity-Blob-Storage\\WebApi\\WebApi\\WebApi.csproj": {}
   },
   "projects": {
-    "C:\\Development\\FullstackingWithGabriel\\Azure-Managed-Identity-Blob-Storage\\WebApi\\WebApi\\WebApi.csproj": {
+    "C:\\CSWS-Git\\Azure-Managed-Identity-Blob-Storage\\WebApi\\WebApi\\WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Development\\FullstackingWithGabriel\\Azure-Managed-Identity-Blob-Storage\\WebApi\\WebApi\\WebApi.csproj",
+        "projectUniqueName": "C:\\CSWS-Git\\Azure-Managed-Identity-Blob-Storage\\WebApi\\WebApi\\WebApi.csproj",
         "projectName": "WebApi",
-        "projectPath": "C:\\Development\\FullstackingWithGabriel\\Azure-Managed-Identity-Blob-Storage\\WebApi\\WebApi\\WebApi.csproj",
-        "packagesPath": "C:\\Users\\GabrielleRoux\\.nuget\\packages\\",
-        "outputPath": "C:\\Development\\FullstackingWithGabriel\\Azure-Managed-Identity-Blob-Storage\\WebApi\\WebApi\\obj\\",
+        "projectPath": "C:\\CSWS-Git\\Azure-Managed-Identity-Blob-Storage\\WebApi\\WebApi\\WebApi.csproj",
+        "packagesPath": "C:\\Users\\C0751211\\.nuget\\packages\\",
+        "outputPath": "C:\\CSWS-Git\\Azure-Managed-Identity-Blob-Storage\\WebApi\\WebApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\GabrielleRoux\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\C0751211\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -78,7 +78,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300-preview.21258.4\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

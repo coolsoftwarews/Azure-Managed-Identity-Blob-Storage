@@ -1,6 +1,7 @@
 ﻿using Azure.Core;
 using Azure.Identity;
 using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
 using Azure.Storage.Files.DataLake;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,6 +25,21 @@ namespace WebApi.Controllers
             this._blobStorageSettings = blobStorageSettings;
         }
 
+        [HttpGet(Name ="GetAll")]
+        public async Task<IActionResult> GetAll()
+        {
+            try
+            {
+                var files = await Files();
+                return Ok(files);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+
 
         [HttpPost(Name = "UploadBlob")]
         public async Task<IActionResult> Upload()
@@ -35,9 +51,7 @@ namespace WebApi.Controllers
                 //support uploading of multiple files
                 foreach (var file in files)
                 {
-                    await TaskUploadFileDataLakes(file);
-
-                    // await UploadFile(file);
+                   await UploadFile(file);
 
                     //await UploadFileUserAssigned(file);
                 }
@@ -65,7 +79,7 @@ namespace WebApi.Controllers
             }
         }
 
-        [HttpGet(Name = "DownloadBlob")]
+        [HttpGet("{resourceId}",Name = "DownloadBlob")]
         public async Task<IActionResult> Download(string resourceId)
         {
             try
@@ -78,28 +92,7 @@ namespace WebApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
-        private async Task TaskUploadFileDataLakes(IFormFile file)
-        {
-            string[] fileParts = file.FileName.Split('.');
-            string resourceId = $"D-{Guid.NewGuid()}.{fileParts[fileParts.Length - 1]}";
-
-            var client = new DefaultAzureCredential();
-
-            var dataLakeServiceClient =
-                                        new DataLakeServiceClient
-                                        (new Uri(_blobStorageSettings.DataLakesEndPoint), client);
-
-
-            var fileSystemClient = dataLakeServiceClient.GetFileSystemClient(_blobStorageSettings.BlobContainer);
-            var directoryClient = fileSystemClient.GetDirectoryClient("SubFolder");
-            var fileClient = directoryClient.GetFileClient(resourceId);
-            
-            await fileClient.UploadAsync(file.OpenReadStream());
-
-        }
-
-        /// <summary>
+                /// <summary>
         /// Upload file using System Assigned Managed Identity e.g. App Service
         /// </summary>
         /// <param name="fileBinary"></param>
@@ -116,7 +109,7 @@ namespace WebApi.Controllers
                                            client);
 
             await containerClient.CreateIfNotExistsAsync();
-            await containerClient.UploadBlobAsync($"SubFolder/{resourceId}", file.OpenReadStream());
+            await containerClient.UploadBlobAsync($"{_blobStorageSettings.SubFolderPath}/{resourceId}", file.OpenReadStream());
         }
 
         /// <summary>
@@ -141,15 +134,43 @@ namespace WebApi.Controllers
             await containerClient.UploadBlobAsync(resourceId, file.OpenReadStream());
         }
 
-        private async Task DeleteFile(string resourceId)
+        private async Task DeleteFile( string resourceId)
         {
+
             var client = new DefaultAzureCredential();
 
             BlobContainerClient containerClient =
                                            new BlobContainerClient(new Uri(_blobStorageSettings.BlobContainerEndPoint),
                                            client);
 
-            await containerClient.DeleteAsync();
+            var blobClient =  containerClient.GetBlobClient(resourceId);
+
+            await blobClient.DeleteIfExistsAsync();
+        }
+
+
+        private async Task<List<string>> Files(int? pageSize=5)
+        {
+            var files = new List<string>();
+
+            var client = new DefaultAzureCredential();
+
+            BlobContainerClient containerClient =
+                                 new BlobContainerClient(new Uri(_blobStorageSettings.BlobContainerEndPoint),
+                                 client);
+
+
+            await foreach (BlobItem blob in containerClient.GetBlobsAsync())
+            {
+                files.Add(blob.Name);
+
+                if (files.Count > pageSize)
+                {
+                    break;
+                }
+            }
+
+            return files;
         }
 
         private async Task<FileStreamResult> DownloadFile(string resourceId)

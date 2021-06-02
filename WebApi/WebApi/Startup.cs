@@ -35,6 +35,7 @@ namespace WebApi
             //            Environment.SetEnvironmentVariable("AZURE_TENANT_ID", msiEnvironment.TenantId);
             //            Environment.SetEnvironmentVariable("AZURE_CLIENT_SECRET", msiEnvironment.ClientSecret);
             //#endif
+           
             var blobStorageSettings = new BlobStorageSettings();
             Configuration.Bind("BlobStorageSettings", blobStorageSettings);
             services.AddSingleton<BlobStorageSettings>(blobStorageSettings);
@@ -61,11 +62,23 @@ namespace WebApi
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApi v1"));
             }
 
+            app.UseCors(x => x
+                     .AllowAnyOrigin()
+                     .AllowAnyMethod()
+                     .AllowAnyHeader());
+
             app.UseHttpsRedirection();
+
+            var options = new DefaultFilesOptions();
+            options.DefaultFileNames.Clear();
+            options.DefaultFileNames.Add("index.html");
+
+            app.UseDefaultFiles(options);
+            app.UseStaticFiles();
 
             app.UseRouting();
 
-            app.UseCors(option => option.AllowAnyOrigin());
+ 
 
             app.UseAuthorization();
 
