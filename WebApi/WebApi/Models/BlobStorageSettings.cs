@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebApi.Models
 {
-      public class BlobStorageSettings
+      public class StorageAccountSettings
     {
         /// <summary>
         /// only needed when using a User Assigned Identity
@@ -15,12 +15,12 @@ namespace WebApi.Models
         /// <summary>
         /// Name of Storage Account
         /// </summary>
-        public string StorageAccount { get; set; }
+        public string StorageAccountName { get; set; }
 
         /// <summary>
         /// Name of Container
         /// </summary>
-        public string BlobContainer { get; set; }
+        public string ContainerName { get; set; }
 
         /// <summary>
         /// Name and folder path
@@ -34,14 +34,14 @@ namespace WebApi.Models
         {
             get
             {
-                return $"https://{StorageAccount}.blob.core.windows.net/{BlobContainer}";
+                return $"https://{StorageAccountName}.blob.core.windows.net/{ContainerName}";
             }
         }
         public string DataLakesEndPoint
         {
             get
             {
-                return $"https://{StorageAccount}.dfs.core.windows.net";
+                return $"https://{StorageAccountName}.dfs.core.windows.net";
             }
         }
     }

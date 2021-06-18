@@ -36,19 +36,24 @@ namespace WebApi
             //            Environment.SetEnvironmentVariable("AZURE_CLIENT_SECRET", msiEnvironment.ClientSecret);
             //#endif
            
-            var blobStorageSettings = new BlobStorageSettings();
-            Configuration.Bind("BlobStorageSettings", blobStorageSettings);
-            services.AddSingleton<BlobStorageSettings>(blobStorageSettings);
+            var storageAccountSettings = new StorageAccountSettings();
+            Configuration.Bind("StorageAccountSettings", storageAccountSettings);
+            services.AddSingleton<StorageAccountSettings>(storageAccountSettings);
 
             services.AddControllers();
+
+            // Allowing CORS for all domains and methods for the purpose of the sample
+            // In production, modify this with the actual domains you want to allow
+            services.AddCors(o => o.AddPolicy("default", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi", Version = "v1" });
-            });
-
-            services.AddCors(c =>
-            {
-                c.AddPolicy("AllowOrigin", option => option.AllowAnyOrigin());
             });
         }
 
@@ -62,10 +67,7 @@ namespace WebApi
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApi v1"));
             }
 
-            app.UseCors(x => x
-                     .AllowAnyOrigin()
-                     .AllowAnyMethod()
-                     .AllowAnyHeader());
+            app.UseCors("default");
 
             app.UseHttpsRedirection();
 
@@ -77,8 +79,6 @@ namespace WebApi
             app.UseStaticFiles();
 
             app.UseRouting();
-
- 
 
             app.UseAuthorization();
 

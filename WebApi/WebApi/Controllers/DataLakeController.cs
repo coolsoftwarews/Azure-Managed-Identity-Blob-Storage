@@ -17,11 +17,11 @@ namespace WebApi.Controllers
     [ApiController]
     public class DataLakeController : ControllerBase
     {
-        private BlobStorageSettings _blobStorageSettings;
+        private StorageAccountSettings _storageAccountSettings;
 
-        public DataLakeController(BlobStorageSettings blobStorageSettings)
+        public DataLakeController(StorageAccountSettings storageAccountSettings)
         {
-            this._blobStorageSettings = blobStorageSettings;
+            this._storageAccountSettings = storageAccountSettings;
         }
 
         [HttpGet(Name = "GetAllByPath")]
@@ -97,11 +97,11 @@ namespace WebApi.Controllers
 
             var dataLakeServiceClient =
                                           new DataLakeServiceClient
-                                          (new Uri(_blobStorageSettings.DataLakesEndPoint), client);
+                                          (new Uri(_storageAccountSettings.DataLakesEndPoint), client);
 
 
-            var fileSystemClient = dataLakeServiceClient.GetFileSystemClient(_blobStorageSettings.BlobContainer);
-            var directoryClient = fileSystemClient.GetDirectoryClient($"{_blobStorageSettings.SubFolderPath}");
+            var fileSystemClient = dataLakeServiceClient.GetFileSystemClient(_storageAccountSettings.ContainerName);
+            var directoryClient = fileSystemClient.GetDirectoryClient($"{_storageAccountSettings.SubFolderPath}");
             var paths = directoryClient.GetPaths();
 
             foreach (var path in paths)
@@ -131,11 +131,11 @@ namespace WebApi.Controllers
 
             var dataLakeServiceClient =
                                         new DataLakeServiceClient
-                                        (new Uri(_blobStorageSettings.DataLakesEndPoint), client);
+                                        (new Uri(_storageAccountSettings.DataLakesEndPoint), client);
 
 
-            var fileSystemClient = dataLakeServiceClient.GetFileSystemClient(_blobStorageSettings.BlobContainer);
-            var directoryClient = fileSystemClient.GetDirectoryClient($"{ _blobStorageSettings.SubFolderPath }");
+            var fileSystemClient = dataLakeServiceClient.GetFileSystemClient(_storageAccountSettings.ContainerName);
+            var directoryClient = fileSystemClient.GetDirectoryClient($"{ _storageAccountSettings.SubFolderPath }");
             var fileClient = directoryClient.GetFileClient(resourceId);
             
             await fileClient.UploadAsync(file.OpenReadStream());
@@ -149,11 +149,11 @@ namespace WebApi.Controllers
 
             var dataLakeServiceClient =
                                         new DataLakeServiceClient
-                                        (new Uri(_blobStorageSettings.DataLakesEndPoint), client);
+                                        (new Uri(_storageAccountSettings.DataLakesEndPoint), client);
 
 
-            var fileSystemClient = dataLakeServiceClient.GetFileSystemClient(_blobStorageSettings.BlobContainer);
-            var directoryClient = fileSystemClient.GetDirectoryClient($"{_blobStorageSettings.SubFolderPath}");
+            var fileSystemClient = dataLakeServiceClient.GetFileSystemClient(_storageAccountSettings.ContainerName);
+            var directoryClient = fileSystemClient.GetDirectoryClient($"{_storageAccountSettings.SubFolderPath}");
             var fileClient = directoryClient.GetFileClient(resourceId);
 
             await fileClient.DeleteIfExistsAsync();
@@ -165,11 +165,11 @@ namespace WebApi.Controllers
 
             var dataLakeServiceClient =
                                         new DataLakeServiceClient
-                                        (new Uri(_blobStorageSettings.DataLakesEndPoint), client);
+                                        (new Uri(_storageAccountSettings.DataLakesEndPoint), client);
 
 
-            var fileSystemClient = dataLakeServiceClient.GetFileSystemClient(_blobStorageSettings.BlobContainer);
-            var directoryClient = fileSystemClient.GetDirectoryClient($"{_blobStorageSettings.SubFolderPath}");
+            var fileSystemClient = dataLakeServiceClient.GetFileSystemClient(_storageAccountSettings.ContainerName);
+            var directoryClient = fileSystemClient.GetDirectoryClient($"{_storageAccountSettings.SubFolderPath}");
             var fileClient = directoryClient.GetFileClient(resourceId);
                
             var provider = new FileExtensionContentTypeProvider();

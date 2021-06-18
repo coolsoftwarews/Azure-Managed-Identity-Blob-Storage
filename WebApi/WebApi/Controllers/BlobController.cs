@@ -18,11 +18,11 @@ namespace WebApi.Controllers
     [ApiController]
     public class BlobController : ControllerBase
     {
-        private BlobStorageSettings _blobStorageSettings;
+        private StorageAccountSettings _storageAccountSettings;
 
-        public BlobController(BlobStorageSettings blobStorageSettings)
+        public BlobController(StorageAccountSettings storageAccountSettings)
         {
-            this._blobStorageSettings = blobStorageSettings;
+            this._storageAccountSettings = storageAccountSettings;
         }
 
         [HttpGet(Name ="GetAll")]
@@ -105,11 +105,11 @@ namespace WebApi.Controllers
             var client = new DefaultAzureCredential();
 
             BlobContainerClient containerClient =
-                                           new BlobContainerClient(new Uri(_blobStorageSettings.BlobContainerEndPoint),
+                                           new BlobContainerClient(new Uri(_storageAccountSettings.BlobContainerEndPoint),
                                            client);
 
             await containerClient.CreateIfNotExistsAsync();
-            await containerClient.UploadBlobAsync($"{_blobStorageSettings.SubFolderPath}/{resourceId}", file.OpenReadStream());
+            await containerClient.UploadBlobAsync($"{_storageAccountSettings.SubFolderPath}/{resourceId}", file.OpenReadStream());
         }
 
         /// <summary>
@@ -123,10 +123,10 @@ namespace WebApi.Controllers
             string resourceId = $"D-{Guid.NewGuid()}.{fileParts[fileParts.Length - 1]}";
 
             var client = new DefaultAzureCredential(
-                            new DefaultAzureCredentialOptions { ManagedIdentityClientId = _blobStorageSettings.ClientId });
+                            new DefaultAzureCredentialOptions { ManagedIdentityClientId = _storageAccountSettings.ClientId });
 
             BlobContainerClient containerClient =
-                                    new BlobContainerClient(new Uri(_blobStorageSettings.BlobContainerEndPoint),
+                                    new BlobContainerClient(new Uri(_storageAccountSettings.BlobContainerEndPoint),
                                     client
                                     );
 
@@ -140,7 +140,7 @@ namespace WebApi.Controllers
             var client = new DefaultAzureCredential();
 
             BlobContainerClient containerClient =
-                                           new BlobContainerClient(new Uri(_blobStorageSettings.BlobContainerEndPoint),
+                                           new BlobContainerClient(new Uri(_storageAccountSettings.BlobContainerEndPoint),
                                            client);
 
             var blobClient =  containerClient.GetBlobClient(resourceId);
@@ -156,7 +156,7 @@ namespace WebApi.Controllers
             var client = new DefaultAzureCredential();
 
             BlobContainerClient containerClient =
-                                 new BlobContainerClient(new Uri(_blobStorageSettings.BlobContainerEndPoint),
+                                 new BlobContainerClient(new Uri(_storageAccountSettings.BlobContainerEndPoint),
                                  client);
 
 
@@ -178,7 +178,7 @@ namespace WebApi.Controllers
             var client = new DefaultAzureCredential();
 
             BlobContainerClient containerClient =
-                                           new BlobContainerClient(new Uri(_blobStorageSettings.BlobContainerEndPoint),
+                                           new BlobContainerClient(new Uri(_storageAccountSettings.BlobContainerEndPoint),
                                            client);
 
             var blobClient = containerClient.GetBlobClient(resourceId);
