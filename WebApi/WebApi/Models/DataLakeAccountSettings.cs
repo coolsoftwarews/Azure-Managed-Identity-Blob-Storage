@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebApi.Models
 {
-      public class StorageAccountSettings
+      public class DataLakeAccountSettings
     {
         /// <summary>
         /// only needed when using a User Assigned Identity
@@ -30,13 +30,7 @@ namespace WebApi.Models
         /// <summary>
         /// generated storage account end point
         /// </summary>
-        public string BlobContainerEndPoint
-        {
-            get
-            {
-                return $"https://{StorageAccountName}.blob.core.windows.net/{ContainerName}";
-            }
-        }
+
         public string DataLakesEndPoint
         {
             get

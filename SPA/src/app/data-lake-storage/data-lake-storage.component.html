@@ -1,0 +1,26 @@
+<h3>Data Lake Example</h3>
+
+<input type="file" id="file" (change)="onUploadFile($event)">
+
+<ng-container *ngIf="blobList">
+  <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Resource name</th>
+          <th scope="col">Action</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let blob of blobList; let i = index" >
+          <th scope="row">{{i}}</th>
+          <td>{{blob}}</td>
+          <td>
+              <i class="fas fa-cloud-download-alt" style="padding: 2px;"  (click)="onDownload(blob)"></i>
+              <i class="fas fa-trash-alt" style="padding: 2px;" (click)="onDelete(blob)"></i>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>

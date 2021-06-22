@@ -18,9 +18,9 @@ namespace WebApi.Controllers
     [ApiController]
     public class BlobController : ControllerBase
     {
-        private StorageAccountSettings _storageAccountSettings;
+        private BlobAccountSettings _storageAccountSettings;
 
-        public BlobController(StorageAccountSettings storageAccountSettings)
+        public BlobController(BlobAccountSettings storageAccountSettings)
         {
             this._storageAccountSettings = storageAccountSettings;
         }

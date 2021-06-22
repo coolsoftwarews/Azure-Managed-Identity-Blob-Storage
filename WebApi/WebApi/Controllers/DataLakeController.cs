@@ -17,9 +17,9 @@ namespace WebApi.Controllers
     [ApiController]
     public class DataLakeController : ControllerBase
     {
-        private StorageAccountSettings _storageAccountSettings;
+        private DataLakeAccountSettings _storageAccountSettings;
 
-        public DataLakeController(StorageAccountSettings storageAccountSettings)
+        public DataLakeController(DataLakeAccountSettings storageAccountSettings)
         {
             this._storageAccountSettings = storageAccountSettings;
         }
@@ -147,6 +147,7 @@ namespace WebApi.Controllers
         {
             var client = new DefaultAzureCredential();
 
+            
             var dataLakeServiceClient =
                                         new DataLakeServiceClient
                                         (new Uri(_storageAccountSettings.DataLakesEndPoint), client);

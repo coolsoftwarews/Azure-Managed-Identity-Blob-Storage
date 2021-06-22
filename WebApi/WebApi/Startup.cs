@@ -35,10 +35,15 @@ namespace WebApi
             //            Environment.SetEnvironmentVariable("AZURE_TENANT_ID", msiEnvironment.TenantId);
             //            Environment.SetEnvironmentVariable("AZURE_CLIENT_SECRET", msiEnvironment.ClientSecret);
             //#endif
-           
-            var storageAccountSettings = new StorageAccountSettings();
-            Configuration.Bind("StorageAccountSettings", storageAccountSettings);
-            services.AddSingleton<StorageAccountSettings>(storageAccountSettings);
+
+            var blobAccountSettings = new BlobAccountSettings();
+            Configuration.Bind("BlobAccountSettings", blobAccountSettings);
+            services.AddSingleton<BlobAccountSettings>(blobAccountSettings);
+
+            var dataLakeAccountSettings = new DataLakeAccountSettings();
+            Configuration.Bind("DataLakeAccountSettings", dataLakeAccountSettings);
+            services.AddSingleton<DataLakeAccountSettings>(dataLakeAccountSettings);
+
 
             services.AddControllers();
 
